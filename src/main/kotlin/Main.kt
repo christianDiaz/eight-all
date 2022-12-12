@@ -46,18 +46,21 @@ private fun showAnswers() {
     println("3. Just Bad")
     println("4. Just Dubious")
     when (readlnOrNull()) {
-        "1" -> responses.forEach { response -> println(response) }
-        "2" -> responses.filterValues { value -> value === SUCCESS_RESPONSE }.forEach { response -> println(response) }
-        "3" -> responses.filterValues { value -> value === BAD_RESPONSE }.forEach { response -> println(response) }
-        "4" -> responses.filterValues { value -> value === DUBIOUS_RESPONSE }.forEach { response -> println(response) }
+        "1" -> responses.forEach { response -> println(response.key) }
+        "2" -> responses.filterValues { value -> value === SUCCESS_RESPONSE }
+            .also { response -> println(response.keys) }
+
+        "3" -> responses.filterValues { value -> value === BAD_RESPONSE }.also { response -> println(response.keys) }
+        "4" -> responses.filterValues { value -> value === DUBIOUS_RESPONSE }
+            .also { response -> println(response.keys) }
     }
 
 }
 
 private fun quit() {
-
+    println("See you later!!")
 }
 
 private fun showError() {
-
+    println("wow! It seem like you choose a no valid option, Try again!!")
 }
