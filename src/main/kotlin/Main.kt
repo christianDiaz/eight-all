@@ -46,15 +46,18 @@ private fun showAnswers() {
     println("3. Just Bad")
     println("4. Just Dubious")
     when (readlnOrNull()) {
-        "1" -> responses.forEach { response -> println(response.key) }
+        "1" -> printResponses(responses)
         "2" -> responses.filterValues { value -> value === SUCCESS_RESPONSE }
-            .also { response -> println(response.keys) }
+            .also { printResponses(it) }
 
-        "3" -> responses.filterValues { value -> value === BAD_RESPONSE }.also { response -> println(response.keys) }
-        "4" -> responses.filterValues { value -> value === DUBIOUS_RESPONSE }
-            .also { response -> println(response.keys) }
+        "3" -> responses.filterValues { value -> value === BAD_RESPONSE }.also { printResponses(it) }
+        "4" -> responses.filterValues { value -> value === DUBIOUS_RESPONSE }.also { printResponses(it) }
     }
 
+}
+
+private fun printResponses(resp: Map<String, String>) {
+    resp.forEach { println(it.key) }
 }
 
 private fun quit() {
